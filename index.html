@@ -33,6 +33,39 @@
             overflow-x: hidden;
         }
 
+        /* Clock Widget */
+        .clock-widget {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            z-index: 100;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .clock-time {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Courier New', monospace;
+        }
+
+        .clock-date {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .clock-flag {
+            font-size: 1.2rem;
+            margin-top: 0.25rem;
+        }
+
         /* Animated Background */
         .bg-animation {
             position: fixed;
@@ -381,18 +414,24 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--primary);
-            color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             transition: all 0.3s;
+            font-weight: 600;
         }
 
         .profile-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
+
+        .link-website { background: #3b82f6; color: white; }
+        .link-github { background: #333; color: white; }
+        .link-linkedin { background: #0077b5; color: white; }
+        .link-tiktok { background: linear-gradient(45deg, #00f2ea, #ff0050); color: white; }
+        .link-youtube { background: #ff0000; color: white; }
+        .link-facebook { background: #1877f2; color: white; }
 
         .profile-hobbies {
             display: flex;
@@ -948,7 +987,7 @@
         .game-container {
             background: linear-gradient(135deg, #1e293b, #0f172a);
             border-radius: 24px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             padding: 2rem;
             border: 2px solid var(--primary);
@@ -960,13 +999,14 @@
             border-radius: 16px;
             padding: 2rem;
             margin: 1.5rem 0;
-            min-height: 300px;
+            min-height: 350px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
+        /* Clicker Game */
         .clicker-btn {
             width: 150px;
             height: 150px;
@@ -978,19 +1018,26 @@
             cursor: pointer;
             transition: all 0.1s;
             box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            margin: 1rem 0;
         }
 
         .clicker-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.9);
         }
 
         .clicker-count {
             font-size: 3rem;
             font-weight: 700;
-            margin: 1rem 0;
             color: var(--gold);
+            margin: 1rem 0;
         }
 
+        .clicker-timer {
+            font-size: 1.5rem;
+            color: var(--danger);
+        }
+
+        /* Memory Game */
         .memory-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1006,14 +1053,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
             transition: all 0.3s;
             border: 2px solid transparent;
+            user-select: none;
         }
 
         .memory-card:hover {
             border-color: var(--primary);
+            transform: scale(1.05);
         }
 
         .memory-card.flipped {
@@ -1024,6 +1073,175 @@
         .memory-card.matched {
             background: var(--success);
             pointer-events: none;
+            animation: matchPulse 0.5s;
+        }
+
+        @keyframes matchPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Math Game */
+        .math-problem {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--gold);
+        }
+
+        .math-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 300px;
+            margin: 1rem auto;
+        }
+
+        .math-btn {
+            padding: 1rem;
+            border: 2px solid var(--glass-border);
+            background: var(--glass);
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .math-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .math-score {
+            font-size: 1.2rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        /* Reaction Game */
+        .reaction-box {
+            width: 100%;
+            height: 200px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 1rem 0;
+        }
+
+        .reaction-wait {
+            background: #ef4444;
+        }
+
+        .reaction-go {
+            background: #22c55e;
+        }
+
+        .reaction-result {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        /* Puzzle Game */
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 300px;
+            margin: 0 auto;
+            background: var(--glass-border);
+            padding: 5px;
+            border-radius: 12px;
+        }
+
+        .puzzle-piece {
+            aspect-ratio: 1;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .puzzle-piece:hover {
+            transform: scale(1.05);
+            background: var(--secondary);
+        }
+
+        .puzzle-piece.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .puzzle-piece.empty:hover {
+            transform: none;
+        }
+
+        /* Boss Game */
+        .boss-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .boss-avatar {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+        }
+
+        .boss-hp-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .boss-hp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ef4444, #f59e0b);
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .attack-btn {
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.1s;
+            margin: 0.5rem;
+        }
+
+        .attack-btn:active {
+            transform: scale(0.95);
+        }
+
+        .boss-log {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 0.9rem;
         }
 
         /* Settings Section */
@@ -1100,8 +1318,11 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
-        .frame-gold { border: 5px solid var(--gold); box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
+        .frame-wood { border: 5px solid #8b4513; }
+        .frame-bronze { border: 5px solid #cd7f32; box-shadow: 0 0 15px rgba(205, 127, 50, 0.5); }
         .frame-silver { border: 5px solid #c0c0c0; box-shadow: 0 0 20px rgba(192, 192, 192, 0.5); }
+        .frame-gold { border: 5px solid var(--gold); box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
+        .frame-crystal { border: 5px solid #a5f3fc; box-shadow: 0 0 25px rgba(165, 243, 252, 0.6); }
         .frame-rainbow { 
             border: 5px solid transparent; 
             border-image: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) 1;
@@ -1448,6 +1669,8 @@
             .main-profile-info { gap: 1rem; }
             .shop-grid { grid-template-columns: repeat(2, 1fr); }
             .games-grid { grid-template-columns: 1fr; }
+            .clock-widget { top: 10px; left: 10px; padding: 0.75rem; }
+            .clock-time { font-size: 1.2rem; }
         }
 
         /* Loading Screen */
@@ -1572,6 +1795,13 @@
     </style>
 </head>
 <body>
+    <!-- Clock Widget -->
+    <div class="clock-widget" id="clockWidget">
+        <div class="clock-time" id="clockTime">00:00:00</div>
+        <div class="clock-date" id="clockDate">--/--/----</div>
+        <div class="clock-flag">🇻🇳 VN</div>
+    </div>
+
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
@@ -1801,15 +2031,33 @@
                     <h3>🔗 Liên kết</h3>
                     <div class="form-group">
                         <label>Website</label>
+                        <i>🌐</i>
                         <input type="url" id="profileWebsite" placeholder="https://website-cua-ban.com">
                     </div>
                     <div class="form-group">
                         <label>GitHub</label>
+                        <i>💻</i>
                         <input type="text" id="profileGithub" placeholder="@username">
                     </div>
                     <div class="form-group">
                         <label>LinkedIn</label>
+                        <i>💼</i>
                         <input type="text" id="profileLinkedin" placeholder="linkedin.com/in/username">
+                    </div>
+                    <div class="form-group">
+                        <label>TikTok</label>
+                        <i>🎵</i>
+                        <input type="text" id="profileTiktok" placeholder="@username">
+                    </div>
+                    <div class="form-group">
+                        <label>YouTube</label>
+                        <i>📺</i>
+                        <input type="text" id="profileYoutube" placeholder="@channel hoặc channel URL">
+                    </div>
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <i>📘</i>
+                        <input type="text" id="profileFacebook" placeholder="facebook.com/username">
                     </div>
                 </div>
 
@@ -2033,34 +2281,26 @@
         let tutorialStep = 0;
         let giftBoxTimer = null;
         let currentGame = null;
+        let clockInterval = null;
 
-        // Shop Items - Giá từ thấp đến cao theo độ đẹp/hiếm
+        // Shop Items
         const shopItems = [
-            // Common (50-200 coins)
             { id: 'frame_wood', name: 'Khung Gỗ', icon: '🪵', price: 50, type: 'frame', class: 'frame-wood', rarity: 'common' },
             { id: 'frame_bronze', name: 'Khung Đồng', icon: '🥉', price: 100, type: 'frame', class: 'frame-bronze', rarity: 'common' },
             { id: 'badge_heart', name: 'Trái Tim', icon: '❤️', price: 80, type: 'badge', rarity: 'common' },
             { id: 'badge_music', name: 'Nốt Nhạc', icon: '🎵', price: 120, type: 'badge', rarity: 'common' },
-            
-            // Uncommon (200-500 coins)
             { id: 'frame_silver', name: 'Khung Bạc', icon: '🥈', price: 300, type: 'frame', class: 'frame-silver', rarity: 'uncommon' },
             { id: 'badge_star', name: 'Ngôi Sao', icon: '⭐', price: 250, type: 'badge', rarity: 'uncommon' },
             { id: 'badge_moon', name: 'Mặt Trăng', icon: '🌙', price: 350, type: 'badge', rarity: 'uncommon' },
             { id: 'effect_sparkle', name: 'Lấp Lánh', icon: '✨', price: 400, type: 'effect', rarity: 'uncommon' },
-            
-            // Rare (500-1000 coins)
             { id: 'frame_gold', name: 'Khung Vàng', icon: '🥇', price: 600, type: 'frame', class: 'frame-gold', rarity: 'rare' },
             { id: 'badge_crown', name: 'Vương Miện', icon: '👑', price: 800, type: 'badge', rarity: 'rare' },
             { id: 'badge_diamond', name: 'Kim Cương', icon: '💎', price: 900, type: 'badge', rarity: 'rare' },
             { id: 'effect_glow', name: 'Phát Sáng', icon: '💫', price: 750, type: 'effect', rarity: 'rare' },
-            
-            // Epic (1000-2000 coins)
             { id: 'frame_crystal', name: 'Khung Pha Lê', icon: '💠', price: 1200, type: 'frame', class: 'frame-crystal', rarity: 'epic' },
             { id: 'badge_fire', name: 'Lửa Thần', icon: '🔥', price: 1500, type: 'badge', rarity: 'epic' },
             { id: 'effect_rainbow', name: 'Cầu Vồng', icon: '🌈', price: 1300, type: 'effect', rarity: 'epic' },
             { id: 'badge_unicorn', name: 'Kỳ Lân', icon: '🦄', price: 1800, type: 'badge', rarity: 'epic' },
-            
-            // Legendary (2000-5000 coins)
             { id: 'frame_rainbow', name: 'Khung Huyền Thoại', icon: '🌈', price: 3000, type: 'frame', class: 'frame-rainbow', rarity: 'legendary' },
             { id: 'badge_dragon', name: 'Rồng Vàng', icon: '🐉', price: 4500, type: 'badge', rarity: 'legendary' },
             { id: 'effect_legend', name: 'Huyền Thoại', icon: '👑', price: 5000, type: 'effect', rarity: 'legendary' },
@@ -2127,6 +2367,7 @@
         // Initialize
         window.onload = function() {
             createBackgroundAnimation();
+            startClock();
             checkNetworkStatus();
             checkExistingSession();
             startAutoSave();
@@ -2136,6 +2377,26 @@
                 document.getElementById('loadingScreen').classList.add('hidden');
             }, 1000);
         };
+
+        // Clock Function - Real-time VN
+        function startClock() {
+            function updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('vi-VN', { hour12: false });
+                const dateString = now.toLocaleDateString('vi-VN', {
+                    weekday: 'short',
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                
+                document.getElementById('clockTime').textContent = timeString;
+                document.getElementById('clockDate').textContent = dateString;
+            }
+            
+            updateClock();
+            clockInterval = setInterval(updateClock, 1000);
+        }
 
         // Background Animation
         function createBackgroundAnimation() {
@@ -2238,7 +2499,7 @@
             if (!currentUser) return;
             
             const rewards = [5, 10, 15, 20, 25, 50, 75, 100];
-            const weights = [30, 25, 20, 15, 5, 3, 1.5, 0.5]; // Tỷ lệ %
+            const weights = [30, 25, 20, 15, 5, 3, 1.5, 0.5];
             
             const random = Math.random() * 100;
             let cumulative = 0;
@@ -2410,9 +2671,8 @@
             document.getElementById('userEmail').textContent = currentUser.email;
             document.getElementById('userCoins').textContent = currentUser.coins || 1000;
             
-            // Set join date
             const joinDate = new Date(currentUser.createdAt);
-            document.getElementById('joinDateText').textContent = joinDate.toLocaleDateString('vi-VN', {
+            document.getElementById('joinDateText').textContent = joinDate.toLocaleString('vi-VN', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric',
@@ -2420,7 +2680,6 @@
                 minute: '2-digit'
             });
             
-            // Load avatar if exists
             if (currentUser.profile && currentUser.profile.avatar) {
                 document.getElementById('avatarImg').src = currentUser.profile.avatar;
                 document.getElementById('avatarImg').style.display = 'block';
@@ -2580,6 +2839,9 @@
             const locationText = document.getElementById('profileLocation').value || 'Chưa cập nhật';
             const website = document.getElementById('profileWebsite').value;
             const github = document.getElementById('profileGithub').value;
+            const tiktok = document.getElementById('profileTiktok').value;
+            const youtube = document.getElementById('profileYoutube').value;
+            const facebook = document.getElementById('profileFacebook').value;
             
             if (currentUser.profile && currentUser.profile.avatar) {
                 avatar.innerHTML = `<img src="${currentUser.profile.avatar}" alt="Avatar">`;
@@ -2594,6 +2856,9 @@
             let linksText = [];
             if (website) linksText.push('🌐 Website');
             if (github) linksText.push('💻 GitHub');
+            if (tiktok) linksText.push('🎵 TikTok');
+            if (youtube) linksText.push('📺 YouTube');
+            if (facebook) linksText.push('📘 Facebook');
             links.textContent = linksText.length > 0 ? linksText.join(' | ') : '🔗 Chưa có liên kết';
             
             modal.classList.add('active');
@@ -2622,6 +2887,9 @@
             const website = currentUser.profile.website;
             const github = currentUser.profile.github;
             const linkedin = currentUser.profile.linkedin;
+            const tiktok = currentUser.profile.tiktok;
+            const youtube = currentUser.profile.youtube;
+            const facebook = currentUser.profile.facebook;
             const hobbies = currentUser.profile.hobbies;
             
             document.getElementById('mainProfileName').textContent = displayName;
@@ -2655,7 +2923,7 @@
             }
             
             const joinedDate = new Date(currentUser.createdAt);
-            document.getElementById('mainProfileJoined').textContent = 'Tham gia: ' + joinedDate.toLocaleDateString('vi-VN', {
+            document.getElementById('mainProfileJoined').textContent = 'Tham gia: ' + joinedDate.toLocaleString('vi-VN', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric',
@@ -2666,13 +2934,25 @@
             const linksContainer = document.getElementById('mainProfileLinks');
             linksContainer.innerHTML = '';
             if (website) {
-                linksContainer.innerHTML += `<a href="${website}" target="_blank" class="profile-link">🌐 Website</a>`;
+                linksContainer.innerHTML += `<a href="${website}" target="_blank" class="profile-link link-website">🌐 Website</a>`;
             }
             if (github) {
-                linksContainer.innerHTML += `<a href="https://github.com/${github}" target="_blank" class="profile-link">💻 GitHub</a>`;
+                linksContainer.innerHTML += `<a href="https://github.com/${github}" target="_blank" class="profile-link link-github">💻 GitHub</a>`;
             }
             if (linkedin) {
-                linksContainer.innerHTML += `<a href="https://${linkedin}" target="_blank" class="profile-link">💼 LinkedIn</a>`;
+                linksContainer.innerHTML += `<a href="https://${linkedin}" target="_blank" class="profile-link link-linkedin">💼 LinkedIn</a>`;
+            }
+            if (tiktok) {
+                const tiktokUrl = tiktok.startsWith('@') ? `https://www.tiktok.com/${tiktok}` : tiktok;
+                linksContainer.innerHTML += `<a href="${tiktokUrl}" target="_blank" class="profile-link link-tiktok">🎵 TikTok</a>`;
+            }
+            if (youtube) {
+                const youtubeUrl = youtube.startsWith('@') ? `https://youtube.com/${youtube}` : youtube;
+                linksContainer.innerHTML += `<a href="${youtubeUrl}" target="_blank" class="profile-link link-youtube">📺 YouTube</a>`;
+            }
+            if (facebook) {
+                const fbUrl = facebook.includes('facebook.com') ? facebook : `https://facebook.com/${facebook}`;
+                linksContainer.innerHTML += `<a href="${fbUrl}" target="_blank" class="profile-link link-facebook">📘 Facebook</a>`;
             }
             
             const hobbiesContainer = document.getElementById('mainProfileHobbies');
@@ -2741,6 +3021,9 @@
                 website: document.getElementById('profileWebsite').value,
                 github: document.getElementById('profileGithub').value,
                 linkedin: document.getElementById('profileLinkedin').value,
+                tiktok: document.getElementById('profileTiktok').value,
+                youtube: document.getElementById('profileYoutube').value,
+                facebook: document.getElementById('profileFacebook').value,
                 color: document.getElementById('profileColor').value,
                 hobbies: document.getElementById('profileHobbies').value
             };
@@ -2765,7 +3048,6 @@
             
             const inventory = currentUser.inventory || [];
             
-            // Sort by price (low to high)
             const sortedItems = [...shopItems].sort((a, b) => a.price - b.price);
             
             sortedItems.forEach(item => {
@@ -2940,18 +3222,14 @@
                 startClickerGame(game);
             } else if (game.id === 'memory') {
                 startMemoryGame(game);
-            } else {
-                // Default simple game
-                gameArea.innerHTML = `
-                    <div style="text-align: center;">
-                        <div style="font-size: 5rem; margin-bottom: 1rem;">${game.icon}</div>
-                        <p>Game đang phát triển!</p>
-                        <p>Nhận phần thưởng ngẫu nhiên...</p>
-                        <button class="btn-primary" onclick="finishGame(${Math.floor(Math.random() * (game.maxReward - game.minReward + 1)) + game.minReward})" style="margin-top: 1rem;">
-                            Nhận thưởng
-                        </button>
-                    </div>
-                `;
+            } else if (game.id === 'math') {
+                startMathGame(game);
+            } else if (game.id === 'reaction') {
+                startReactionGame(game);
+            } else if (game.id === 'puzzle') {
+                startPuzzleGame(game);
+            } else if (game.id === 'boss') {
+                startBossGame(game);
             }
         }
 
@@ -2963,7 +3241,7 @@
             gameArea.innerHTML = `
                 <div class="clicker-count" id="clickCount">0</div>
                 <button class="clicker-btn" id="clickBtn">👆</button>
-                <p>Thời gian: <span id="timeLeft">10</span>s</p>
+                <div class="clicker-timer">Thời gian: <span id="timeLeft">10</span>s</div>
             `;
             
             const clickBtn = document.getElementById('clickBtn');
@@ -3004,7 +3282,7 @@
             let moves = 0;
             
             gameArea.innerHTML = `
-                <p>Lượt: <span id="moves">0</span></p>
+                <p style="margin-bottom: 1rem;">Lượt: <span id="moves">0</span></p>
                 <div class="memory-grid" id="memoryGrid"></div>
             `;
             
@@ -3053,6 +3331,263 @@
             });
         }
 
+        function startMathGame(game) {
+            const gameArea = document.getElementById('gameArea');
+            let score = 0;
+            let questions = 0;
+            const maxQuestions = 5;
+            
+            function generateQuestion() {
+                const operators = ['+', '-', '*'];
+                const operator = operators[Math.floor(Math.random() * operators.length)];
+                let a, b, answer;
+                
+                switch(operator) {
+                    case '+':
+                        a = Math.floor(Math.random() * 50) + 1;
+                        b = Math.floor(Math.random() * 50) + 1;
+                        answer = a + b;
+                        break;
+                    case '-':
+                        a = Math.floor(Math.random() * 50) + 20;
+                        b = Math.floor(Math.random() * 20) + 1;
+                        answer = a - b;
+                        break;
+                    case '*':
+                        a = Math.floor(Math.random() * 12) + 2;
+                        b = Math.floor(Math.random() * 12) + 2;
+                        answer = a * b;
+                        break;
+                }
+                
+                const options = [answer];
+                while (options.length < 4) {
+                    const wrong = answer + Math.floor(Math.random() * 20) - 10;
+                    if (wrong !== answer && !options.includes(wrong) && wrong > 0) {
+                        options.push(wrong);
+                    }
+                }
+                
+                options.sort(() => Math.random() - 0.5);
+                
+                gameArea.innerHTML = `
+                    <div class="math-score">Điểm: ${score}/${maxQuestions}</div>
+                    <div class="math-problem">${a} ${operator} ${b} = ?</div>
+                    <div class="math-options" id="mathOptions"></div>
+                `;
+                
+                const optionsContainer = document.getElementById('mathOptions');
+                options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'math-btn';
+                    btn.textContent = opt;
+                    btn.onclick = () => {
+                        if (opt === answer) {
+                            score++;
+                            showNotification('✅ Chính xác!', 'success');
+                        } else {
+                            showNotification('❌ Sai rồi!', 'error');
+                        }
+                        
+                        questions++;
+                        if (questions >= maxQuestions) {
+                            const reward = Math.floor((score / maxQuestions) * (game.maxReward - game.minReward) + game.minReward);
+                            finishGame(reward);
+                        } else {
+                            setTimeout(generateQuestion, 500);
+                        }
+                    };
+                    optionsContainer.appendChild(btn);
+                });
+            }
+            
+            generateQuestion();
+        }
+
+        function startReactionGame(game) {
+            const gameArea = document.getElementById('gameArea');
+            let startTime;
+            let timeout;
+            let isWaiting = true;
+            
+            gameArea.innerHTML = `
+                <div class="reaction-box reaction-wait" id="reactionBox">
+                    Đợi đèn xanh...
+                </div>
+                <div class="reaction-result" id="reactionResult"></div>
+            `;
+            
+            const box = document.getElementById('reactionBox');
+            const result = document.getElementById('reactionResult');
+            
+            const delay = Math.random() * 3000 + 2000;
+            
+            timeout = setTimeout(() => {
+                box.classList.remove('reaction-wait');
+                box.classList.add('reaction-go');
+                box.textContent = 'BẤM NGAY!';
+                startTime = Date.now();
+                isWaiting = false;
+            }, delay);
+            
+            box.onclick = () => {
+                if (isWaiting) {
+                    clearTimeout(timeout);
+                    result.textContent = '❌ Bấm quá sớm! Thử lại...';
+                    setTimeout(() => startReactionGame(game), 1500);
+                } else {
+                    const reactionTime = Date.now() - startTime;
+                    result.textContent = `⏱️ ${reactionTime}ms`;
+                    
+                    let reward;
+                    if (reactionTime < 200) reward = game.maxReward;
+                    else if (reactionTime < 300) reward = Math.floor(game.maxReward * 0.8);
+                    else if (reactionTime < 400) reward = Math.floor(game.maxReward * 0.6);
+                    else if (reactionTime < 500) reward = Math.floor(game.maxReward * 0.4);
+                    else reward = game.minReward;
+                    
+                    setTimeout(() => finishGame(reward), 1000);
+                }
+            };
+        }
+
+        function startPuzzleGame(game) {
+            const gameArea = document.getElementById('gameArea');
+            const size = 3;
+            const numbers = Array.from({length: size * size - 1}, (_, i) => i + 1);
+            numbers.push(null);
+            
+            let currentState = [...numbers];
+            
+            function shuffle() {
+                for (let i = currentState.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [currentState[i], currentState[j]] = [currentState[j], currentState[i]];
+                }
+            }
+            
+            shuffle();
+            
+            function render() {
+                gameArea.innerHTML = '<div class="puzzle-grid" id="puzzleGrid"></div>';
+                const grid = document.getElementById('puzzleGrid');
+                
+                currentState.forEach((num, index) => {
+                    const piece = document.createElement('div');
+                    piece.className = num ? 'puzzle-piece' : 'puzzle-piece empty';
+                    piece.textContent = num || '';
+                    
+                    piece.onclick = () => {
+                        if (!num) return;
+                        
+                        const emptyIndex = currentState.indexOf(null);
+                        const row = Math.floor(index / size);
+                        const col = index % size;
+                        const emptyRow = Math.floor(emptyIndex / size);
+                        const emptyCol = emptyIndex % size;
+                        
+                        if ((Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
+                            (Math.abs(col - emptyCol) === 1 && row === emptyRow)) {
+                            
+                            [currentState[index], currentState[emptyIndex]] = [currentState[emptyIndex], currentState[index]];
+                            render();
+                            
+                            if (checkWin()) {
+                                const moves = parseInt(document.getElementById('moveCount')?.textContent || '0');
+                                const reward = Math.max(game.maxReward - moves * 2, game.minReward);
+                                setTimeout(() => finishGame(reward), 500);
+                            }
+                        }
+                    };
+                    
+                    grid.appendChild(piece);
+                });
+            }
+            
+            function checkWin() {
+                for (let i = 0; i < currentState.length - 1; i++) {
+                    if (currentState[i] !== i + 1) return false;
+                }
+                return true;
+            }
+            
+            render();
+        }
+
+        function startBossGame(game) {
+            const gameArea = document.getElementById('gameArea');
+            let bossHP = 100;
+            let playerHP = 100;
+            let turn = 0;
+            
+            function render() {
+                gameArea.innerHTML = `
+                    <div class="boss-container">
+                        <div class="boss-avatar">👹</div>
+                        <div class="boss-hp-bar">
+                            <div class="boss-hp-fill" style="width: ${bossHP}%">${bossHP} HP</div>
+                        </div>
+                        <p>HP của bạn: ${playerHP}/100</p>
+                        <div>
+                            <button class="attack-btn" onclick="attack('normal')">⚔️ Đánh thường</button>
+                            <button class="attack-btn" onclick="attack('special')">⚡ Chiêu đặc biệt</button>
+                            <button class="attack-btn" onclick="attack('heal')">💚 Hồi máu</button>
+                        </div>
+                        <div class="boss-log" id="bossLog"></div>
+                    </div>
+                `;
+            }
+            
+            window.attack = (type) => {
+                turn++;
+                let playerDamage = 0;
+                let bossDamage = Math.floor(Math.random() * 15) + 5;
+                let log = '';
+                
+                switch(type) {
+                    case 'normal':
+                        playerDamage = Math.floor(Math.random() * 10) + 5;
+                        log = `Bạn gây ${playerDamage} sát thương!`;
+                        break;
+                    case 'special':
+                        playerDamage = Math.floor(Math.random() * 20) + 10;
+                        bossDamage *= 1.5;
+                        log = `⚡ Chiêu đặc biệt! ${playerDamage} sát thương!`;
+                        break;
+                    case 'heal':
+                        playerHP = Math.min(playerHP + 20, 100);
+                        log = `💚 Bạn hồi 20 HP!`;
+                        break;
+                }
+                
+                bossHP -= playerDamage;
+                playerHP -= Math.floor(bossDamage);
+                
+                if (bossHP <= 0) {
+                    bossHP = 0;
+                    const reward = Math.min(game.minReward + turn * 10, game.maxReward);
+                    finishGame(reward);
+                    return;
+                }
+                
+                if (playerHP <= 0) {
+                    playerHP = 0;
+                    showNotification('💀 Bạn đã thua! Thử lại nhé!', 'error');
+                    setTimeout(() => startBossGame(game), 1500);
+                    return;
+                }
+                
+                const logDiv = document.getElementById('bossLog');
+                if (logDiv) {
+                    logDiv.innerHTML = `<div>${log}</div><div>Boss gây ${Math.floor(bossDamage)} sát thương!</div>` + logDiv.innerHTML;
+                }
+                
+                render();
+            };
+            
+            render();
+        }
+
         function finishGame(reward) {
             currentUser.coins = (currentUser.coins || 0) + reward;
             updateUserData();
@@ -3075,11 +3610,11 @@
         function closeGame() {
             document.getElementById('gameModal').classList.remove('active');
             currentGame = null;
+            window.attack = null;
         }
 
         // Settings System
         function initSettings() {
-            // Detect device info
             const ua = navigator.userAgent;
             let deviceType = 'Máy tính';
             let os = 'Không xác định';
